@@ -1,23 +1,21 @@
-# Fullstack DevOps Infrastructure: Nginx + FastAPI + Docker
+# 🚀 Portafolio de Microservicios: FastAPI + Nginx + Docker
 
-Este proyecto demuestra la implementación de una arquitectura profesional de microservicios, desplegada y orquestada en un entorno Linux.
+¡Bienvenido a mi proyecto de infraestructura! Este repositorio demuestra la implementación de una arquitectura escalable utilizando contenedores para separar la lógica de negocio del servidor web.
 
-## 🚀 Logros Técnicos
-- **Proxy Inverso**: Configuración de Nginx en Docker para gestionar peticiones web.
-- **Backend API**: Desarrollo de una API RESTful asíncrona usando **FastAPI**.
-- **Contenerización**: Despliegue de servicios aislados mediante Docker.
-- **Automatización**: Scripts en Bash para monitoreo de salud del sistema con logs automáticos (Crontab).
+## 🏗️ Arquitectura del Sistema
+El proyecto está orquestado mediante **Docker Compose** y consta de dos servicios principales:
+* **Backend**: Una API REST construida con **FastAPI** corriendo en un entorno virtual aislado.
+* **Frontend/Proxy**: Un servidor **Nginx** que actúa como Proxy Inverso, gestionando el tráfico estático y redirigiendo las consultas a la API.
 
-## 🛠️ Tecnologías Usadas
-- **SO**: Ubuntu 22.04
-- **Servidor Web**: Nginx
-- **Lenguaje**: Python 3.10
-- **Virtualización**: Docker
-- **Control de Versiones**: Git / GitHub
+## 🛠️ Desafíos Técnicos Superados
+Durante el desarrollo, se aplicaron habilidades de **Troubleshooting** de nivel avanzado:
+* **Gestión de Volúmenes**: Resolución de conflictos de montaje de archivos vs directorios en contenedores.
+* **Administración de Linux**: Configuración de repositorios oficiales de Docker y actualización de plugins para evitar errores de compatibilidad (`KeyError: ContainerConfig`).
+* **Optimización de Repositorios**: Limpieza de entornos virtuales (`venv`) y estandarización mediante `.gitignore` y `requirements.txt`.
 
-## 📂 Estructura
-- `/frontend`: Configuración de Nginx y archivos HTML.
-- `/backend`: Lógica de la API en Python y entorno virtual (venv).
-
----
-*Proyecto desarrollado por Aladino como parte de su formación en infraestructura y despliegue moderno.*
+## 🚀 Cómo ejecutar el proyecto
+1. Clonar el repositorio.
+2. Asegurarse de tener instalado el **Docker Compose Plugin** moderno.
+3. Ejecutar el comando:
+   ```bash
+   docker compose up -d --build

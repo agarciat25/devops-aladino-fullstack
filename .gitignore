@@ -1,4 +1,16 @@
-venv/
+# Python (archivos compilados y caché)
 __pycache__/
-*.pyc
-.env
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Docker (si tienes logs locales o volúmenes)
+*.log
+.docker/
+
+# Archivos del Sistema / Editores
+.DS_Store
+.vscode/
+.idea/

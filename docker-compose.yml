@@ -38,7 +38,7 @@ services:
     environment:
       MYSQL_DATABASE: gh_imports_db
     volumes:
-      - db_data:/var/lib/mysql
+      - ./mysql_data:/var/lib/mysql
     networks:
       - ghi_network
 

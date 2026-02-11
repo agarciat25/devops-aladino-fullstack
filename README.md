@@ -1,27 +1,50 @@
-# 🚀 Infraestructura de Microservicios: GH Imports
+🚀 Full-Stack DevOps Portfolio: Infraestructura Escalable y Monitoreada
+Este proyecto demuestra el despliegue de una arquitectura web moderna de 3 capas utilizando Docker y Docker Compose, enfocada en la alta disponibilidad, persistencia de datos y gestión visual mediante herramientas de grado industrial.
 
-### 📝 Descripción del Proyecto
-Este repositorio contiene la arquitectura de microservicios diseñada para modernizar el sistema de ventas de GH Imports. Se migró de un entorno monolítico en Ubuntu 16 a una infraestructura orquestada y escalable en **Ubuntu 24.04 LTS** utilizando **Docker**.
+🏗️ Arquitectura del Sistema
+La infraestructura se compone de 4 servicios orquestados dinámicamente:
 
-### 🏗️ Arquitectura del Sistema
-El proyecto implementa una arquitectura de tres capas aisladas mediante una red interna tipo `bridge`:
+Proxy Inverso (Nginx): Actúa como puerta de enlace, gestionando las peticiones externas y redirigiéndolas al backend.
 
-* **Servidor Web / Proxy Inverso:** Gestionado con **Nginx**, encargado de recibir las peticiones externas y redirigirlas al backend.
-* **Lógica de Negocio (Backend):** Desarrollado con **FastAPI**, procesando las solicitudes y comunicándose con la base de datos.
-* **Persistencia de Datos:** Base de datos **MySQL 5.7** con volúmenes persistentes para asegurar la integridad de la información.
+API Backend (FastAPI): Lógica de negocio procesada en Python, diseñada para ser ligera y rápida.
 
-### 🛠️ Desafíos Técnicos Resueltos (Troubleshooting)
-Como parte del proceso de trazabilidad y despliegue, se resolvieron los siguientes obstáculos críticos:
+Base de Datos (MySQL 8.0): Capa de datos con persistencia mediante volúmenes locales para evitar la pérdida de información.
 
-* **Corrección de Sintaxis YAML:** Se depuraron errores de tipo `KeyError: 'ContainerConfig'` y errores de indentación en el archivo `docker-compose.yml`, ajustando correctamente los contextos de construcción para los contenedores.
-* **Gestión de Permisos en Linux:** Resolución de errores de tipo `Permission denied` al configurar los archivos de Nginx mediante el uso correcto de privilegios de superusuario (`sudo`).
-* **Configuración de Proxy Inverso:** Implementación de reglas de `proxy_pass` para conectar el flujo de red entre el puerto 80 externo y el puerto 8000 interno de la API, logrando un estado **HTTP 200 OK**.
+Panel de Control (Portainer CE): Interfaz gráfica para el monitoreo en tiempo real, gestión de logs y salud de los contenedores.
 
-### ⚙️ Instrucciones de Despliegue
-1. Clonar este repositorio.
-2. Crear un archivo `.env` basado en el archivo `.env.example` incluido.
-3. Ejecutar el comando de orquestación:
-   ```bash
-   docker-compose up -d --build
-   
-4. Verificar el funcionamiento en: http://localhost
+🛠️ Características Principales
+Alta Disponibilidad: Configuración de políticas de restart: always para asegurar la recuperación automática ante fallos.
+
+Persistencia Garantizada: Implementación de volúmenes de Docker para separar los datos del ciclo de vida del contenedor.
+
+Red Aislada: Todos los servicios conviven en una red virtual privada (bridge) para mejorar la seguridad y el descubrimiento de servicios.
+
+Seguridad de Credenciales: Gestión de variables de entorno mediante archivos .env (protegidos en .gitignore).
+
+📊 Monitoreo y Gestión
+Para este proyecto, se integró Portainer, permitiendo:
+
+Visualización del consumo de recursos (CPU/RAM).
+
+Acceso rápido a la consola de cada contenedor sin necesidad de SSH.
+
+Inspección de logs para depuración rápida (Troubleshooting).
+
+🚀 Cómo Desplegar
+Solo necesitas tener instalado Docker y Docker Compose:
+
+Clonar el repositorio:
+
+Bash
+git clone https://github.com/agarciat25/devops-aladino-fullstack.git
+
+Levantar la infraestructura:
+
+Bash
+docker compose up -d
+
+Acceder a los servicios:
+
+App Web: http://localhost:8080
+
+Panel Portainer: https://localhost:9443

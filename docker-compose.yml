@@ -42,9 +42,23 @@ services:
     networks:
       - ghi_network
 
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: always
+    ports:
+      - "9443:9443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - ghi_network #<--agregado para que este en la misma red
+
 networks:
   ghi_network:
     driver: bridge
 
 volumes:
   db_data:
+  portainer_data:

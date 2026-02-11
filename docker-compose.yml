@@ -3,6 +3,7 @@ services:
   nginx:
     image: nginx:alpine
     container_name: ghi_web
+    restart: always #alta disponibilidad
     ports:
       - "80:80"
     volumes:
@@ -19,6 +20,7 @@ services:
       context: ./backend #<---Aqui le dices que el Dockerfile está en la carpeta de backend
       dockerfile: Dockerfile
     container_name: ghi_app
+    restart: always #<-- alta disponibilidad
     env_file: .env
     volumes:
       - ./html:/var/www/html
@@ -31,7 +33,7 @@ services:
   db:
     image: mysql:5.7
     container_name: ghi_db
-    restart: always
+    restart: always #<-- alta disponibilidad
     env_file: .env
     environment:
       MYSQL_DATABASE: gh_imports_db

@@ -1,16 +1,12 @@
-# Python (archivos compilados y caché)
+# Seguridad: Nunca subir credenciales
+.env
+
+# Datos persistentes de Docker (para que no pesen en el repo)
+mysql_data/
+db_data/
+
+# Archivos de Python y sistema
 __pycache__/
-*.py[cod]
-*$py.class
-.venv/
-env/
+*.pyc
 venv/
-
-# Docker (si tienes logs locales o volúmenes)
-*.log
-.docker/
-
-# Archivos del Sistema / Editores
 .DS_Store
-.vscode/
-.idea/

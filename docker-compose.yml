@@ -36,9 +36,13 @@ services:
     restart: always #<-- alta disponibilidad
     env_file: .env
     environment:
-      MYSQL_DATABASE: gh_imports_db
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./mysql_data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d #linea de seguridad DB
     networks:
       - ghi_network
 
@@ -48,7 +52,7 @@ services:
     container_name: portainer
     restart: always
     ports:
-      - "9443:9443"
+      - "${PORTAINER}:9443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
